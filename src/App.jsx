@@ -34,7 +34,7 @@ const App = () => {
         <Route path="/payment/:plan" element={<Payment />} />
         <Route path="/admin-login" element={<AdminLogin />} />
         <Route path="/admin" element={<AdminPanel />} />
-        <Route path="/admin" element={<AdminPanel />} />/>
+        <Route path="/admin" element={<AdminPanel />} />
 
       </Routes>
     </Router>
