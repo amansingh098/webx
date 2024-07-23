@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
-const Navbar = () => {
+const Navbar = ({ isLoggedIn, onLogout }) => {
   const navigate = useNavigate();
 
   const handleNavigation = (path) => {
@@ -30,25 +30,27 @@ const Navbar = () => {
             </motion.div>
           </div>
           <div className="flex items-center">
-            <motion.button
-              className="bg-gray-700 bg-opacity-70 p-1 rounded-full text-blue-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              transition={{ type: 'spring', stiffness: 300 }}
-              onClick={() => handleNavigation('/notifications')}
-            >
-              <span className="sr-only">View notifications</span>
-              {/* Notification Icon */}
-            </motion.button>
-            <motion.button
-              className="ml-3 bg-gray-700 bg-opacity-70 text-blue-300 px-3 py-2 rounded-md text-sm font-medium hover:text-white"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              transition={{ type: 'spring', stiffness: 300 }}
-              onClick={() => handleNavigation('/login')}
-            >
-              Login
-            </motion.button>
+            {isLoggedIn ? (
+              <motion.button
+                className="ml-3 bg-gray-700 bg-opacity-70 text-blue-300 px-3 py-2 rounded-md text-sm font-medium hover:text-white"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                transition={{ type: 'spring', stiffness: 300 }}
+                onClick={onLogout}
+              >
+                Logout
+              </motion.button>
+            ) : (
+              <motion.button
+                className="ml-3 bg-gray-700 bg-opacity-70 text-blue-300 px-3 py-2 rounded-md text-sm font-medium hover:text-white"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                transition={{ type: 'spring', stiffness: 300 }}
+                onClick={() => handleNavigation('/login')}
+              >
+                Login
+              </motion.button>
+            )}
           </div>
           <div className="-mr-2 flex md:hidden">
             <motion.button
