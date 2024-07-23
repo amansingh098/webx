@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { db, storage, auth } from '../firebase';
 import { addDoc, collection } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-
+import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { onAuthStateChanged } from 'firebase/auth';
 import loadingGif from '../assets/loading.gif'; // Import your loading gif
