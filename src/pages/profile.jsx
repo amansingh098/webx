@@ -13,6 +13,10 @@ const Profile = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [whatsapp, setWhatsapp] = useState('');
+  const [gender, setGender] = useState('');
+  const [interestJobs, setInterestJobs] = useState(false);
+  const [interestStartups, setInterestStartups] = useState(false);
+  const [privacyPolicy, setPrivacyPolicy] = useState(false);
   const [resume, setResume] = useState(null);
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
@@ -51,6 +55,10 @@ const Profile = () => {
         throw new Error('User not authenticated');
       }
 
+      if (!privacyPolicy) {
+        throw new Error('You must agree to the privacy policy.');
+      }
+
       // Upload resume to Firebase Storage
       const resumeRef = ref(storage, `resumes/${resume.name}`);
       await uploadBytes(resumeRef, resume);
@@ -61,6 +69,9 @@ const Profile = () => {
         name,
         email,
         whatsapp,
+        gender,
+        interestJobs,
+        interestStartups,
         resumeURL,
         userId: user.uid,
       });
@@ -125,6 +136,53 @@ const Profile = () => {
                   required
                 />
               </div>
+              <div className="mb-4">
+                <label className="block text-gray-400 mb-1" htmlFor="gender">
+                  Gender
+                </label>
+                <select
+                  id="gender"
+                  className="w-full px-4 py-2 bg-gray-700 text-gray-200 border border-gray-700 rounded focus:outline-none focus:border-blue-500"
+                  value={gender}
+                  onChange={(e) => setGender(e.target.value)}
+                  required
+                >
+                  <option value="">Select Gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-400 mb-1">
+                  Interests
+                </label>
+                <div className="flex items-center">
+                  <input
+                    type="checkbox"
+                    id="interestJobs"
+                    className="mr-2"
+                    checked={interestJobs}
+                    onChange={(e) => setInterestJobs(e.target.checked)}
+                  />
+                  <label htmlFor="interestJobs" className="text-gray-400">Interested in Jobs</label>
+                </div>
+                <div className="flex items-center mt-2">
+                  <input
+                    type="checkbox"
+                    id="interestStartups"
+                    className="mr-2"
+                    checked={interestStartups}
+                    onChange={(e) => setInterestStartups(e.target.checked)}
+                  />
+                  <label htmlFor="interestStartups" className="text-gray-400">Interested in Startups</label>
+                </div>
+              </div>
+              <div className="mb-4">
+                <p className="text-gray-400">
+                  Your other confidential information will be taken on WhatsApp window.
+                </p>
+              </div>
               <div
                 className="mb-4 p-4 border-2 border-dashed border-gray-700 rounded-lg"
                 onDrop={handleDrop}
@@ -141,6 +199,19 @@ const Profile = () => {
                   required
                 />
                 {resume && <p className="text-gray-400 mt-2">{resume.name}</p>}
+              </div>
+              <div className="mb-4 flex items-center">
+                <input
+                  type="checkbox"
+                  id="privacyPolicy"
+                  className="mr-2"
+                  checked={privacyPolicy}
+                  onChange={(e) => setPrivacyPolicy(e.target.checked)}
+                  required
+                />
+                <label htmlFor="privacyPolicy" className="text-gray-400">
+                  I agree to the <a href="#" className="text-blue-400 hover:underline">Privacy Policy</a> and <a href="#" className="text-blue-400 hover:underline">Terms of Service</a>
+                </label>
               </div>
               <button
                 type="submit"
