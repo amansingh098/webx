@@ -17,7 +17,7 @@ import AdminLogin from './admin/AdminLogin';
 import PaymentMethods from './pages/PaymentMethods';
 import Analytics from './pages/Analytics';
 import Settings from './pages/Settings';
-
+import Show from './pages/Show';
 const App = () => {
   return (
     <Router>
@@ -39,7 +39,8 @@ const App = () => {
         <Route path="/payment/:plan" element={<PaymentMethods />} />
         <Route path="/admin-login" element={<AdminLogin />} />
         <Route path="/admin" element={<AdminPanel />} />
-      </Routes>
+        <Route path="/show" element={<Show />} />
+        </Routes>
     </Router>
   );
 };
