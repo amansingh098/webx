@@ -1,5 +1,8 @@
+// src/DashLogin.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebase'; // Adjust the path if necessary
 
 const DashLogin = () => {
   const [email, setEmail] = useState('');
@@ -7,12 +10,12 @@ const DashLogin = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Dummy authentication logic
-    if (email === 'admin@example.com' && password === 'password') {
-      navigate('/dashboard'); // Redirect to dashboard after successful login
-    } else {
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      navigate('/'); // Redirect to dashboard after successful login
+    } catch (error) {
       setError('Failed to log in. Please check your credentials and try again.');
     }
   };

@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import { storage, db, auth } from '../firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { collection, addDoc } from 'firebase/firestore';
+import qr from '../assets/qr.jpeg';
 
 const PaymentMethods = () => {
   const { plan } = useParams();
@@ -80,9 +81,9 @@ const PaymentMethods = () => {
               Pay Now
             </button>
             <h2 className="text-2xl font-semibold mt-6 mb-4">UPI Payment</h2>
-            <p className="text-lg mb-4">UPI ID: <span className="font-bold">aditya@ibl</span></p>
+            <p className="text-lg mb-4">UPI ID: <span className="font-bold">myluckeystar@ybl</span></p>
             <div className="flex justify-center mb-4">
-              <img src="https://www.shiftboard.com/wp-content/uploads/2016/08/shiftboard-qr-code.png" alt="QR Code" className="w-48 h-48" />
+              <img src={qr} alt="QR Code" className="w-48 h-48" />
             </div>
             <div className="flex flex-wrap justify-center space-x-4 p-4 bg-gray-700 rounded-lg">
               <img src="https://www.theindianwire.com/wp-content/uploads/2019/03/ptm1.jpg" alt="Paytm" className="h-12 md:h-16" />

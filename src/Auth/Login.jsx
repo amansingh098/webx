@@ -1,8 +1,8 @@
+// src/components/Login.js
 import React, { useState } from 'react';
 import { auth } from '../firebase';
 import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -89,7 +89,7 @@ const Login = () => {
           </div>
           <div className="mt-6 text-center">
             <p className="text-gray-400">
-              Don’t have an account? <a href="#" className="text-blue-500 hover:underline">Register here</a>
+              Don’t have an account? <a href="/signup" className="text-blue-500 hover:underline">Register here</a>
             </p>
           </div>
         </div>
