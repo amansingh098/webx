@@ -8,6 +8,8 @@ import About from './components/About';
 import Services from './components/Services';
 import Contact from './components/Contact';
 import Login from './Auth/Login';
+import Signup from './Auth/Signup';
+import DashLogin from './Auth/DashLogin'; // Adjust the path according to your project structure
 import Dashboard from './pages/Dashboard';
 import Profile from './pages/profile';
 import Plans from './pages/Plans';
@@ -33,6 +35,8 @@ const App = () => {
           <Route path="contact" element={<Contact />} />
         </Route>
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/dashboard-login" element={<DashLogin />} />
         <Route
           path="/dashboard"
           element={

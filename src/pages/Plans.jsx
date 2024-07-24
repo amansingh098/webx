@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { db, auth } from '../firebase';
 import { addDoc, collection } from 'firebase/firestore';
@@ -6,20 +6,22 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 const Plans = () => {
-  const [selectedPlan, setSelectedPlan] = useState('');
   const navigate = useNavigate();
 
-  const handlePlanSelection = async (plan) => {
+  const handlePlanSelection = async (plan, amount) => {
     const user = auth.currentUser;
     if (!user) {
       navigate('/login');
       return;
     }
 
+    const totalAmount = amount + 20; // Adding GST of 20 Rs
+
     try {
       await addDoc(collection(db, 'userPlans'), {
         userId: user.uid,
         plan,
+        amount: totalAmount,
       });
 
       navigate(`/payment/${plan}`);
@@ -32,121 +34,73 @@ const Plans = () => {
     <div className="min-h-screen flex flex-col bg-gray-900 text-white">
       <Navbar />
       <div className="flex-grow flex flex-col items-center justify-center p-4">
-        <h1 className="text-3xl font-bold mb-6">Choose Your Plan</h1>
-        <div className="bg-gray-800 rounded-lg shadow-lg max-w-4xl w-full p-6">
-          <div className="flex flex-col md:flex-row items-center justify-between mb-4">
-            <div className="w-full md:w-1/3 mb-4 md:mb-0">
-              <h2 className="text-xl font-semibold mb-2">All content</h2>
-              <p className="text-gray-400">Movies, live sports, TV Specials</p>
+        <h1 className="text-4xl font-bold mb-6">Choose Your Job Plan</h1>
+        <div className="bg-gray-800 rounded-lg shadow-lg max-w-5xl w-full p-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-gray-700 rounded-lg shadow-md p-6 flex flex-col items-center justify-between h-full">
+              <div className="flex-grow">
+                <h2 className="text-2xl font-semibold mb-4">Basic</h2>
+                <p className="text-gray-400 mb-6">Job Application</p>
+                <p className="text-3xl font-bold mb-2">₹499</p>
+                <p className="text-lg mb-6">1 Month</p>
+                <ul className="text-gray-400 mb-6">
+                  <li>Automatic Apply</li>
+                  <li>Personal Dashboard</li>
+                  <li>Daily Updates</li>
+                  <li>100+ Companies Applied</li>
+                </ul>
+              </div>
+              <button
+                className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition mt-4"
+                onClick={() => handlePlanSelection('basic', 300)}
+              >
+                Enroll Now
+              </button>
             </div>
-            <div className="w-full md:w-1/3 flex justify-around">
-              <div className="text-center">
-                <span className="block text-blue-500">✓</span>
+            <div className="bg-gray-700 rounded-lg shadow-md p-6 flex flex-col items-center justify-between h-full">
+              <div className="flex-grow">
+                <h2 className="text-2xl font-semibold mb-4">Pro</h2>
+                <p className="text-gray-400 mb-6">Advanced Job Application</p>
+                <p className="text-3xl font-bold mb-2">₹899</p>
+                <p className="text-lg mb-6">1 in Months</p>
+                <ul className="text-gray-400 mb-6">
+                  <li>Automatic Apply by AI</li>
+                  <li>Email Updates</li>
+                  <li>Personal Dashboard</li>
+                  <li>Customer Service Support</li>
+                  <li>150+ Companies Applied</li>
+                </ul>
               </div>
-              <div className="text-center">
-                <span className="block text-blue-500">✓</span>
-              </div>
-              <div className="text-center">
-                <span className="block text-blue-500">✓</span>
-              </div>
+              <button
+                className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition mt-4"
+                onClick={() => handlePlanSelection('pro', 799)}
+              >
+                Enroll Now
+              </button>
             </div>
-          </div>
-          <div className="flex flex-col md:flex-row items-center justify-between mb-4">
-            <div className="w-full md:w-1/3 mb-4 md:mb-0">
-              <h2 className="text-xl font-semibold mb-2">Watch on TV or Laptop</h2>
-            </div>
-            <div className="w-full md:w-1/3 flex justify-around">
-              <div className="text-center">
-                <span className="block text-red-500">✗</span>
+            <div className="bg-gray-700 rounded-lg shadow-md p-6 flex flex-col items-center justify-between h-full">
+              <div className="flex-grow">
+                <h2 className="text-2xl font-semibold mb-4">Pro Plus</h2>
+                <p className="text-gray-400 mb-6">Comprehensive Job Assistance</p>
+                <p className="text-3xl font-bold mb-2">₹1299</p>
+                <p className="text-lg mb-6">1 Months</p>
+                <ul className="text-gray-400 mb-6">
+                  <li>All Recent Job Updates</li>
+                  <li>Personal Dashboard</li>
+                  <li>Customer Service Support</li>
+                  <li>Personal Updates</li>
+                  <li>100% Placement Guarantee</li>
+                  <li>Chance to Appear for Interviews</li>
+                  <li>Resume Building</li>
+                  <li>200+ Companies Applied</li>
+                </ul>
               </div>
-              <div className="text-center">
-                <span className="block text-blue-500">✓</span>
-              </div>
-              <div className="text-center">
-                <span className="block text-blue-500">✓</span>
-              </div>
-            </div>
-          </div>
-          <div className="flex flex-col md:flex-row items-center justify-between mb-4">
-            <div className="w-full md:w-1/3 mb-4 md:mb-0">
-              <h2 className="text-xl font-semibold mb-2">Number of devices that can be logged in</h2>
-            </div>
-            <div className="w-full md:w-1/3 flex justify-around">
-              <div className="text-center">
-                <span className="block">1</span>
-              </div>
-              <div className="text-center">
-                <span className="block">2</span>
-              </div>
-              <div className="text-center">
-                <span className="block">3</span>
-              </div>
-            </div>
-          </div>
-          <div className="flex flex-col md:flex-row items-center justify-between mb-4">
-            <div className="w-full md:w-1/3 mb-4 md:mb-0">
-              <h2 className="text-xl font-semibold mb-2">Max video quality</h2>
-            </div>
-            <div className="w-full md:w-1/3 flex justify-around">
-              <div className="text-center">
-                <span className="block">HD (720p)</span>
-              </div>
-              <div className="text-center">
-                <span className="block">Full HD (1080p)</span>
-              </div>
-              <div className="text-center">
-                <span className="block">4K (2160p)</span>
-              </div>
-            </div>
-          </div>
-          <div className="flex flex-col md:flex-row items-center justify-between mb-4">
-            <div className="w-full md:w-1/3 mb-4 md:mb-0">
-              <h2 className="text-xl font-semibold mb-2">Max audio quality</h2>
-            </div>
-            <div className="w-full md:w-1/3 flex justify-around">
-              <div className="text-center">
-                <span className="block">Stereo</span>
-              </div>
-              <div className="text-center">
-                <span className="block">Dolby 5.1</span>
-              </div>
-              <div className="text-center">
-                <span className="block">Dolby Atmos</span>
-              </div>
-            </div>
-          </div>
-          <div className="flex flex-col md:flex-row items-center justify-between">
-            <div className="w-full md:w-1/3 mb-4 md:mb-0">
-              <h2 className="text-xl font-semibold mb-2">Price</h2>
-            </div>
-            <div className="w-full md:w-1/3 flex justify-around">
-              <div className="text-center">
-                <span className="block text-lg font-bold">₹399/Year</span>
-                <button
-                  className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition mt-2"
-                  onClick={() => handlePlanSelection('399')}
-                >
-                  Choose
-                </button>
-              </div>
-              <div className="text-center">
-                <span className="block text-lg font-bold">₹599/Year</span>
-                <button
-                  className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition mt-2"
-                  onClick={() => handlePlanSelection('599')}
-                >
-                  Choose
-                </button>
-              </div>
-              <div className="text-center">
-                <span className="block text-lg font-bold">₹999/Year</span>
-                <button
-                  className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition mt-2"
-                  onClick={() => handlePlanSelection('999')}
-                >
-                  Choose
-                </button>
-              </div>
+              <button
+                className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition mt-4"
+                onClick={() => handlePlanSelection('pro-plus', 999)}
+              >
+                Enroll Now
+              </button>
             </div>
           </div>
         </div>

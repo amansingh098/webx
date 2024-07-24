@@ -1,17 +1,56 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 const Navbar = ({ isLoggedIn, onLogout }) => {
   const navigate = useNavigate();
+  const [visible, setVisible] = useState(false);
+  const [scrolling, setScrolling] = useState(false);
+  let timeoutId;
 
   const handleNavigation = (path) => {
     navigate(path);
   };
 
+  const handleMouseEnter = () => {
+    clearTimeout(timeoutId);
+    setVisible(true);
+  };
+
+  const handleMouseLeave = () => {
+    timeoutId = setTimeout(() => setVisible(false), 2000);
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50 && !visible) {
+        setVisible(true);
+        setScrolling(true);
+        clearTimeout(timeoutId);
+      }
+
+      if (scrolling) {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
+          setVisible(false);
+          setScrolling(false);
+        }, 2000);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timeoutId);
+    };
+  }, [visible, scrolling]);
+
   return (
     <motion.nav
-      className="fixed top-0 left-0 right-0 text-white z-50 shadow-lg backdrop-filter backdrop-blur-lg bg-opacity-30"
+      className={`fixed top-0 left-0 right-0 text-white z-50 shadow-lg backdrop-filter backdrop-blur-lg bg-opacity-30 transition-opacity duration-500 ${visible ? 'opacity-100' : 'opacity-0'}`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       initial={{ y: -80 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
@@ -41,15 +80,35 @@ const Navbar = ({ isLoggedIn, onLogout }) => {
                 Logout
               </motion.button>
             ) : (
-              <motion.button
-                className="ml-3 bg-gray-700 bg-opacity-70 text-blue-300 px-3 py-2 rounded-md text-sm font-medium hover:text-white"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                transition={{ type: 'spring', stiffness: 300 }}
-                onClick={() => handleNavigation('/login')}
-              >
-                Login
-              </motion.button>
+              <>
+                <motion.button
+                  className="ml-3 bg-gray-700 bg-opacity-70 text-blue-300 px-3 py-2 rounded-md text-sm font-medium hover:text-white"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ type: 'spring', stiffness: 300 }}
+                  onClick={() => handleNavigation('/login')}
+                >
+                  Login
+                </motion.button>
+                <motion.button
+                  className="ml-3 bg-blue-500 bg-opacity-70 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-600"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ type: 'spring', stiffness: 300 }}
+                  onClick={() => handleNavigation('/signup')}
+                >
+                  Signup
+                </motion.button>
+                <motion.button
+                  className="ml-3 bg-green-500 bg-opacity-70 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-green-600"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ type: 'spring', stiffness: 300 }}
+                  onClick={() => handleNavigation('/dashboard-login')}
+                >
+                  Dashboard Login
+                </motion.button>
+              </>
             )}
           </div>
           <div className="-mr-2 flex md:hidden">
