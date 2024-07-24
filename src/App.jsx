@@ -18,6 +18,8 @@ import PaymentMethods from './pages/PaymentMethods';
 import Analytics from './pages/Analytics';
 import Settings from './pages/Settings';
 import Show from './pages/Show';
+import PrivateRoute from './pages/PrivateRoute'; // Adjust the path according to your project structure
+
 const App = () => {
   return (
     <Router>
@@ -31,16 +33,30 @@ const App = () => {
           <Route path="contact" element={<Contact />} />
         </Route>
         <Route path="/login" element={<Login />} />
-        <Route path='/dashboard' element={<Dashboard/>}/>
-        <Route path="/profile" element={<Profile />} /> 
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
+        <Route path="/profile" element={<Profile />} />
         <Route path="settings" element={<Settings />} />
         <Route path="analytics" element={<Analytics />} />
-        <Route path="/plans" element={<Plans />} /> 
+        <Route path="/plans" element={<Plans />} />
         <Route path="/payment/:plan" element={<PaymentMethods />} />
         <Route path="/admin-login" element={<AdminLogin />} />
-        <Route path="/admin" element={<AdminPanel />} />
+        <Route
+          path="/admin"
+          element={
+            <PrivateRoute>
+              <AdminPanel />
+            </PrivateRoute>
+          }
+        />
         <Route path="/show" element={<Show />} />
-        </Routes>
+      </Routes>
     </Router>
   );
 };

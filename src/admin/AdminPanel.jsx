@@ -77,7 +77,8 @@ const AdminPanel = () => {
           utr,
           screenshotUrl: downloadURL,
           userId: user.uid,
-          email: user.email,  // Assuming you want to keep track of the user's email as well
+          email: user.email,
+          timestamp: new Date(),
         });
 
         setNotification('Payment submitted successfully.');
@@ -144,10 +145,10 @@ const AdminPanel = () => {
             <table className="w-full text-gray-400">
               <thead>
                 <tr>
-                  <th className="border-b border-gray-700 px-4 py-2">Name</th>
-                  <th className="border-b border-gray-700 px-4 py-2">Email</th>
-                  <th className="border-b border-gray-700 px-4 py-2">WhatsApp</th>
-                  <th className="border-b border-gray-700 px-4 py-2">Actions</th>
+                  <th className="border-b border-gray-700 px-4 py-2 text-left">Name</th>
+                  <th className="border-b border-gray-700 px-4 py-2 text-left">Email</th>
+                  <th className="border-b border-gray-700 px-4 py-2 text-left">WhatsApp</th>
+                  <th className="border-b border-gray-700 px-4 py-2 text-left">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -208,9 +209,9 @@ const AdminPanel = () => {
           <table className="w-full text-gray-400">
             <thead>
               <tr>
-                <th className="border-b border-gray-700 px-4 py-2">Email</th>
-                <th className="border-b border-gray-700 px-4 py-2">UTR Number</th>
-                <th className="border-b border-gray-700 px-4 py-2">Screenshot</th>
+                <th className="border-b border-gray-700 px-4 py-2 text-left">Email</th>
+                <th className="border-b border-gray-700 px-4 py-2 text-left">UTR Number</th>
+                <th className="border-b border-gray-700 px-4 py-2 text-left">Screenshot</th>
               </tr>
             </thead>
             <tbody>
