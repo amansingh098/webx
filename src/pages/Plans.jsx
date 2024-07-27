@@ -26,11 +26,11 @@ const Plans = () => {
 
       // Redirect to the specific payment link for each plan
       if (plan === 'basic') {
-        window.location.href = 'https://payments.cashfree.com/links/h731hib1h54g';
+        window.location.href = 'https://payments.cashfree.com/forms/Jobindeed';
       } else if (plan === 'pro') {
-        window.location.href = 'https://payments.cashfree.com/links/z731hs0fffjg'; // Replace with actual Pro plan link
+        window.location.href = 'https://payments.cashfree.com/forms/jobindeedproplan'; // Replace with actual Pro plan link
       } else if (plan === 'pro-plus') {
-        window.location.href = 'https://payments.cashfree.com/links/M731hus8dfjg'; // Replace with actual Pro Plus plan link
+        window.location.href = 'https://payments.cashfree.com/forms/proplus'; // Replace with actual Pro Plus plan link
       }
     } catch (error) {
       console.error('Error saving plan: ', error);

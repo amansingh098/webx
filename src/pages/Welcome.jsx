@@ -6,7 +6,7 @@ const Welcome = () => {
   const navigate = useNavigate();
 
   const handleExploreClick = () => {
-    navigate('/transition');
+    navigate('/Home');
   };
 
   return (

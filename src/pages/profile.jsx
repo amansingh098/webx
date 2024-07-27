@@ -77,7 +77,7 @@ const Profile = () => {
       });
 
       setMessage('Profile updated successfully!');
-      navigate('/plans'); // Redirect to Plans page
+      navigate('/joined'); // Redirect to Plans page
     } catch (error) {
       setMessage(`Error: ${error.message}`);
     } finally {

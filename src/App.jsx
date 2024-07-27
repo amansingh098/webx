@@ -21,13 +21,14 @@ import Analytics from './pages/Analytics';
 import Settings from './pages/Settings';
 import Show from './pages/Show';
 import PrivateRoute from './pages/PrivateRoute'; // Adjust the path according to your project structure
+import Joined from './pages/Joined';
 
 const App = () => {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Welcome />} />
-        <Route path="/transition" element={<Transition />} />
+        
         <Route path="/home" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
@@ -46,6 +47,8 @@ const App = () => {
           }
         />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/joined" element={<Joined/>} />
+
         <Route path="settings" element={<Settings />} />
         <Route path="analytics" element={<Analytics />} />
         <Route path="/plans" element={<Plans />} />
