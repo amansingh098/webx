@@ -1,0 +1,49 @@
+.logo-section {
+  overflow: hidden;
+  position: relative;
+  background-color: #1f2937; /* Adjust the background color as needed */
+  padding: 20px 0; /* Optional padding */
+}
+
+.logo-row {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  will-change: transform;
+  position: relative;
+}
+
+.logo-row .logo-card {
+  flex: 0 0 auto; /* Prevent flex items from shrinking or growing */
+  width: 230px; /* Set a fixed width for the logo cards */
+  height: 80px; /* Set a fixed height for the logo cards */
+  background: #ffffff; /* Background color of the cards */
+  border-radius: 8px; /* Rounded corners */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(143, 19, 19, 0.1); /* Optional shadow for depth */
+  margin: 5px; /* No margin to ensure seamless loop */
+}
+
+.logo {
+  max-width: 80%; /* Ensures logo fits within the card */
+  max-height: 80%;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50%));
+  }
+}
+
+.left-to-right {
+  animation: scroll-left 7s linear infinite;
+}
+
+.right-to-left {
+  animation: scroll-left 7s linear infinite reverse;
+}
