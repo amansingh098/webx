@@ -98,11 +98,11 @@ const Joined = () => {
       <img src="https://logos-world.net/wp-content/uploads/2020/07/Adobe-Logo.png" alt="Adobe Logo" className="logo" />
     </div>
     <div className="logo-card">
-      <img src="https://w7.pngwing.com/pngs/906/1023/png-transparent-intel-logo-fujitsu-business-technology-intel-blue-text-trademark-thumbnail.png" alt="Intel Logo" className="logo" />
+      <img src="https://th.bing.com/th/id/OIP.-E_R7gxhUdCuoceu0ZcqYQHaEK?w=293&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="Intel Logo" className="logo" />
     </div>
     {/* Repeat logos or use additional unique logos */}
     <div className="logo-card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Microsoft_logo_2012.svg" alt="Microsoft Logo" className="logo" />
+      <img src="https://th.bing.com/th/id/OIP.u7EacCFBeokY-0SfOD12lQHaEK?w=287&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="Microsoft Logo" className="logo" />
     </div>
     <div className="logo-card">
       <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon Logo" className="logo" />
@@ -125,7 +125,7 @@ const Joined = () => {
       <img src="https://img.freepik.com/vektoren-premium/neues-twitter-logo-x-2023-twitter-x-logo-vektor-download_691560-10809.jpg?w=2000" alt="Twitter Logo" className="logo" />
     </div>
     <div className="logo-card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Meta_Platforms_Inc._logo.svg" alt="Meta Logo" className="logo" />
+      <img src="https://th.bing.com/th/id/OIP.t04z7YCrwJYFQVt9VdlyKAHaCO?w=300&h=105&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="Meta Logo" className="logo" />
     </div>
     <div className="logo-card">
       <img src="https://th.bing.com/th/id/OIP.sCtdNjphAin-gugu0MNptAHaEK?w=318&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="YouTube Logo" className="logo" />
